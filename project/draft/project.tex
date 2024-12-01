@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{algorithm} %
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+
+\usepackage{tcolorbox}
+\newtcolorbox{greenbox}[1]{colback=green!5!white,colframe=green!75!black,fonttitle=\bfseries,title=#1}
+
+
+\usepackage{amsthm}
+\usepackage{bm}
+
+\newtheorem{definition}{(Definition)}
+\newtheorem{theorem}{(Theorem)}
+\newtheorem{lemma}{(Lemma)}
+\newtheorem{corollary}{(Corollary)}
+
+\newtheorem*{remark}{Remark}
+
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmin}{argmin} % no space, limits underneath in displays
+
+
+
+\setlength{\parindent}{0pt} % for getting rid of first line indentation
+
+
+% ================================================
+% =====================  BEGIN DOCUMENT 
+% ================================================
+
+\title{Game Theory Project}
+\author{Juan Pablo Bello Gonzalez}
+\date{September 2024}
+
+\begin{document}
+
+
+\maketitle
+
+\section{introduction}
+
+extensive form games to model imperfect information games. They involve sequential decisions when players choose actions at differnt times (Prof Bryce Extensive Games).
+To represent these interactions we can use the extensive form gametree which lets us encode the timing information of a sequential game
+
+"the key idea is tht if player are making decisions at different times, then each point where a player makes a decision is represented as a node in a tree. We'll label the node with the player who is making the decision at that point. Also each level on the tree alternates players. And decisions avaliable to a player when they are making a decision will result in branches steming from that node. Those branches may lead to other decision nodes for various players in the game or they may lead to a terminal outcome represented by a leaf in the tree where as usual we will have a payoff for each of the players, in the case of poker and Khun poker this payoff will be zero sum. "
+
+these levels of the tree correspond to a player making a decision and then player 2 reacting to that decision. This is a computationally intensive method (do poker tree start) even after symmetries removed. 
+
+How strategies and equillibria relate to this model?
+- We think of a strategy in an extensive form game as a complete contingent plan of actin that a player would do at any of their decision nodes, given the history wich is visible to them. 
+So a strategy for player i takes as input any of the decision nodes for that player and produces an action that the player would play at that possition. 
+
+
+Counter factual regret minimization. 
+
+How this can be used to model poker and weakly solve poker 
+
+
+Kuhn poker 
+
+\section{Defining the gmae}
+
+Set of players
+$N={P_1, P_2}$
+
+Set of histories:
+$H$. Some examples $(Q,J,b,b)$
+$Z \subset H$ is the set of terminal histories. for instance $(QJ,b,b)$, $(QJ,p)$, etc. 
+$A(h)$ are actions avaliable after a non-terminal history $h \in H$.
+
+A function $f_c$. which assignes a probability distribution over at every decision point, ie at node corresponding to player i's decision, given the history the probabiity that they go transition to the avaliable options. This is just the definition of that distribution, we would like to find the optimal such distribution which maximizes utility?
+
+For each player $i \in N$, a partition 
+
+\end{document}
