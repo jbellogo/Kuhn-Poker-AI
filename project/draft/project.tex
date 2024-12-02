@@ -58,7 +58,7 @@ Counter factual regret minimization.
 How this can be used to model poker and weakly solve poker 
 
 
-\subsubsection{modeling imperfect information}
+\subsubsection{Modeling imperfect information}
 
 "To model imperfect information, the histories of each player $d$ are partitioned into a collection $d$
 of so-called information sets. Each information set $d$
@@ -67,12 +67,41 @@ distinguish between when he or she acts  (MIT LECTUREs)" For instance, in the ca
 
 
 
-\section{Defining the game}
+\section{Forulating Khun Poker as an extensive-form game}
 According to (REGRET MINIMIZATION..)
 A formal definition of an extensive game includes the following:
+
+\begin{itemize}
+\item A finite set $N$ of players. 
+\item A finite set $H$ of ordered histories $H$.
+
+\end{itemize}
+
+%% GO SECTION BY SECTION INSTEAD OF BULLETPOINTS, define the property and then define how it is for Khun Poker. 
+
 \begin{itemize}
 \item A finite set of two players $N={P_1, P_2}$
-\item A finite set of ordered action histories $H$.
+\item A finite set of ordered action histories $H$, such that the empty sequence is in H and every prefix of a sequence in H is also in H. 
+\begin{itemize}
+\item Denote $Z \subset H$ the terminal histories, corresponding to leaves on the tree representation, after which the game, it is no one's turn, and players receive utilities.
+\item Denote $A(h) = \{ a : (h,a) \in H \setminus Z\}$ as the actions available for the player whose turn it is after a non-terminal history $h \ in H \setminus Z$.
+\end{itemize}
+
+\item A \textbf{player function}, $P: H \setminus Z \rightarrow N$ that determines the player whose turn it is to act at the end of a given history. 
+
+\item A function $f_i$ that associates with every history $h$ for which it is player i's turn, $P(h) = i$, a probability measure over the player's possible actions given the history $A(h)$. $f_i(a|h)$ denotes the probability of player $i$ choosing action $a$ given $h$, where each such probability measure is independent of every other such measure. 
+
+\item A function $f_c$. which assignes a probability distribution over at every decision point, ie at node corresponding to player i's decision, given the history the probabiity that they go transition to the avaliable options. This is just the definition of that distribution, we would like to find the optimal such distribution which maximizes utility?
+
+
+\item For each player $i \in N$ define their \textbf{information partition}, $\mathcal{I}_i$, as a partition of the set of histories at which player $i$ must act, $\{ h \in H { P(h) = i \}$, such that each member of the partition $I_i \ in \mathcal{I}_i$ is called an information set and it corresponds to the subset of a history visible to player $i$ of a fixed length/of a particular time. 
+
+Information sets have the property that $A(h) = A(h')$ the set of actions must be the same for elements of the same information set. Example: at time $0$ once chance has dealt, player 1 has 3 information sets corresponding to which card he drew. In all three cases, player 1 has the two choices of checking or betting. He cannot fold at time 1. But at time 3, After draw, P1 action, and P2 action, he can now fold... no matter his information set. 
+
+for $I_i \in \mathcal{I}_i$ denote by $A(I_i)$ the set $A(h)$ and by $P(I_i)$ the player $P(h)$ for any $h\in I_i$. 
+
+
+
 In the case of Khun poker, there are a two distinct action sets, those corresponding to chance draw $A_1 = {KJ, KQ, QJ, QK, JQ, JK}$ with the ordering encoding the player ie $KJ  $
  
  In the case of Khun poker H = set of ordered subsets of $C \times A \times A$ where $C = { (a,b) : a \in Cards \and b \in Cards \and a\neq b}$ 
@@ -80,14 +109,12 @@ Some examples $(Q,J,b,b)$
 $Z \subset H$ is the set of terminal histories. for instance $(QJ,b,b)$, $(QJ,p)$, etc. 
 $A(h)$ are actions avaliable after a non-terminal history $h \in H$.
 
-\item A function $P: H\Z \rightarro N$ that determines the player whose turn it is to act at the end of a given history. 
 
 EXPLANATION: 
 In the Khun poker definition, 
 $P([(c_1,c_2)]) = P1$ encodes that after the draw from chance, it is player 1's turn to act. 
 $P([(c_1,c_2), b]) = P2$ encodes that after the draw from change and player 1's betting action, it is the turn of player 2. 
 
-\item A function $f_c$. which assignes a probability distribution over at every decision point, ie at node corresponding to player i's decision, given the history the probabiity that they go transition to the avaliable options. This is just the definition of that distribution, we would like to find the optimal such distribution which maximizes utility?
 
 For each player $i \in N$, a partition 
 \end{itemize}
@@ -126,9 +153,7 @@ Since regret goes from costs to utility, we now wish to maximize it?
 Both players in fact will adapt to one another via no-regret learning. So how do we keep track of the regret for each plater?
 
 \textbf{THEOREM:}
-If two no-regret algorithms play a zero-sum game against one another for T
- iterations with average regret less than ϵ
-, then their average strategies approximate Nash Equilibrium (up to 2ϵ) 
+If two no-regret algorithms play a zero-sum game against one another for T iterations with average regret less than $\epsilon$, then their average strategies approximate Nash Equilibrium (up to $2 \epsilon$) 
 
 \subsubsection{Average Overall Regret}
 
