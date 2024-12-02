@@ -87,13 +87,51 @@ In the Khun poker definition,
 $P([(c_1,c_2)]) = P1$ encodes that after the draw from chance, it is player 1's turn to act. 
 $P([(c_1,c_2), b]) = P2$ encodes that after the draw from change and player 1's betting action, it is the turn of player 2. 
 
-
-
 \item A function $f_c$. which assignes a probability distribution over at every decision point, ie at node corresponding to player i's decision, given the history the probabiity that they go transition to the avaliable options. This is just the definition of that distribution, we would like to find the optimal such distribution which maximizes utility?
 
 For each player $i \in N$, a partition 
-
 \end{itemize}
+
+\subsubsection{A strategy in an extensive form game}
+'Loosely speaking, a strategy describes how to act in every single possible situation. It is a recipe for how to act in entire game, a lookup table you can read your actions from. (INT8)'
+
+For player i, a strategy should provide a probability sdistribution over actions avaliable to him at every information set where he is expected to perform an action, so not including terminal nodes. For khun poker: 
+
+
+\subsubsection{Nash Equillibrium}
+By Nash's Theorem, any finite game is guaratneed to have a, possibly mixed, NE. This includes poker and Khun poker. 
+
+\subsubsection{Information sets}
+For definining imperfect information sets, players do not have knoweldge of the entire state, player's perspectives are called information sets. 
+"Information set is a set of game states (game tree nodes) that are not distinguishable for a player."
+
+\subsubsection{No Regret Learning}
+regret is central to \textbf{online learning}, which deals with repeatedly making decisions in imperfect information environemtns. 
+
+We must index by time, this means we get the right answers and can evaluate expert predictions.
+
+Assume we have expert predictions. We wish to distribute trust. After the environemnt reacts, it will reveal the real outcome (sequential/online structure) and so we obtain a loss vector that evaluates out N experts.
+
+"Regret at time t is a difference between our algorithm total loss and the best single expert loss" 
+
+\subsubsection{Regret matching as an example of no-regret learning algorithm}
+EXPERTS are actions (ie you shuold fold, call, bet)
+WE can compute cummulatve regret wrt an expert i at time t, expressing how we regret not listening to particular epert i. and we update that experts weight.
+
+\subsubsection{connecting no-regret learning and game theory}
+This regret matching algorothm can be used to model something that evolves with time, but the issue with games is that we would like to input the game state/history at some point into the regret,
+
+Since regret goes from costs to utility, we now wish to maximize it?
+
+Both players in fact will adapt to one another via no-regret learning. So how do we keep track of the regret for each plater?
+
+\textbf{THEOREM:}
+If two no-regret algorithms play a zero-sum game against one another for T
+ iterations with average regret less than ϵ
+, then their average strategies approximate Nash Equilibrium (up to 2ϵ) 
+
+\subsubsection{Average Overall Regret}
+
 
 
 \end{document}
